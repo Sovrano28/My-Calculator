@@ -1,6 +1,33 @@
 from logging import root
 import tkinter as tk
 
+calculation = ""
+
+
+def add_to_text_input(symbol):
+    global calculation
+    calculation += str(symbol)
+    text_input.delete(1.0, "end")
+    text_input.insert(1.0, calculation)
+
+
+def evaluate_calculation():
+    global calculation
+    try:
+        result = str(eval(calculation))
+        calculation = ""
+        text_input.delete(1.0, "end")
+        text_input.insert(1.0, result)
+    except:
+        clear_field()
+        text_input.insert(1.0, "Error")
+
+
+def clear_field():
+    global calculation
+    calculation = ""
+    text_input.delete(1.0, "end")
+
 root = tk.Tk()
 
 root.title("My Calculotor")
@@ -10,7 +37,7 @@ root.config(background="powder blue")
 text_input = tk.Text(root, height="2", width="16", font=("Verdana", 24))
 text_input.grid(columnspan=5)
 
-btn1 = tk.Button(rrot, text="1", command=lambda: add_text_to_input(1), width=5, font=("Arial", 14)).grid(row=2, column=1)
+btn1 = tk.Button(root, text="1", command=lambda: add_to_text_input(1), width=5, font=("Arial", 14)).grid(row=2, column=1)
 btn2 = tk.Button(root, text="2", command=lambda: add_to_text_input(2), width=5, font=("Arial", 14)).grid(row=2, column=2)
 btn3 = tk.Button(root, text="3", command=lambda: add_to_text_input(3), width=5, font=("Arial", 14)).grid(row=2, column=3)
 btn4 = tk.Button(root, text="4", command=lambda: add_to_text_input(4), width=5, font=("Arial", 14)).grid(row=3, column=1)
