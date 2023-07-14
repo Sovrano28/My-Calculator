@@ -30,7 +30,7 @@ def clear_field():
 
 root = tk.Tk()
 
-root.title("My Calculotor")
+root.title("My Calculator")
 root.geometry("330x280")
 root.config(background="powder blue")
 
